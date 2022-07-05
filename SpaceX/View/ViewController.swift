@@ -38,7 +38,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     @objc func filterButton(){
-        print("asdasdasd")
         
         let optionClosure={(action : UIAction) in
             self.filters="0"
