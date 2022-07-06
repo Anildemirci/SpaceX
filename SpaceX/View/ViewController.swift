@@ -25,36 +25,32 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         tableView.delegate=self
         
         navigationItem.title="Space X"
-        
-        
-         button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .normal)
-         button.addTarget(self, action: #selector(self.filterButton), for: .touchUpInside)
-         button.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-         let barButton = UIBarButtonItem(customView: button)
-         self.navigationItem.rightBarButtonItem = barButton
-         
-        
+        barButton()
         getData()
     }
     
-    @objc func filterButton(){
+    func barButton(){
+        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .normal)
+        //button.addTarget(self, action: nil, for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
         
         let optionClosure={(action : UIAction) in
-            self.filters="0"
-            self.getData()
+           self.filters="0"
+           self.getData()
         }
         let optionClosure2={(action : UIAction) in
-            self.filters="1"
-            self.getData()
+           self.filters="1"
+           self.getData()
         }
         button.menu=UIMenu(children: [
-            UIAction(title: "Artan", image: UIImage(systemName: "arrow.up"), handler: optionClosure),
-            UIAction(title: "Azalan", image: UIImage(systemName: "arrow.down"), handler: optionClosure2),
+           UIAction(title: "Artan", image: UIImage(systemName: "arrow.up"), handler: optionClosure),
+           UIAction(title: "Azalan", image: UIImage(systemName: "arrow.down"), handler: optionClosure2),
         ])
         button.showsMenuAsPrimaryAction=true
-        //button.changesSelectionAsPrimaryAction=true
+        let barButton = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = barButton
     }
-
+    
     func getData(){
         
         let url = URL(string: "https://api.spacexdata.com/v2/launches")!
